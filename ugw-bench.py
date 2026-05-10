@@ -12,7 +12,7 @@ import json
 
 import mrcfile
 import pandas as pd
-import trn, coords
+import code.trn as trn, code.coords as coords
 import importlib
 importlib.reload(trn)
 
