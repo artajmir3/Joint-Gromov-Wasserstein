@@ -1,6 +1,8 @@
 import mrcfile
 import numpy as np
+
 import trn
+import cvt
 
 from quaternions import perform
 from alignment import change_quat_format
@@ -9,7 +11,7 @@ from Bio import PDB
 from Bio.PDB.vectors import Vector, rotmat
 
 
-def sample(fname, thresh, M, invalid=False, random_seed=None, verbose=False):
+def sample(fname, thresh, M, invalid=False, random_seed=None, verbose=False, method='trn'):
     """
     Sample a given file using a topology representing network and return sampled points
     params:
@@ -40,15 +42,24 @@ def sample(fname, thresh, M, invalid=False, random_seed=None, verbose=False):
         print(map_th.sum())
     map_th[map_th < thresh] = 0
 
-    rm0,arr_flat,arr_idx,xyz,coords_1d = trn.trn_rm0(map_th,M,random_seed=random_seed)
+    points = None
+    if method=='trn':
+        rm0,arr_flat,arr_idx,xyz,coords_1d = trn.trn_rm0(map_th,M,random_seed=random_seed)
 
-    l0 = 0.005*M # larger tightens things up (far apart areas too much to much, pulls together). smaller spreads things out
-    lf = 0.5
-    tf = M*8
-    e0 = 0.3
-    ef = 0.05
+        l0 = 0.005*M # larger tightens things up (far apart areas too much to much, pulls together). smaller spreads things out
+        lf = 0.5
+        tf = M*8
+        e0 = 0.3
+        ef = 0.05
 
-    rms,rs,ts_save = trn.trn_iterate(rm0,arr_flat,arr_idx,xyz,n_save=10,e0=e0,ef=ef,l0=l0,lf=lf,tf=tf,do_log=True,log_n=10)
+        rms,rs,ts_save = trn.trn_iterate(rm0,arr_flat,arr_idx,xyz,n_save=10,e0=e0,ef=ef,l0=l0,lf=lf,tf=tf,do_log=True,log_n=10)
+
+        points = rms[10]
+    elif method=='cvt':
+        robs, map_edited = cvt.get_init(map_th, M)
+        robs = cvt.iterate(map_edited, robs)
+        
+        points = robs
 
     
     N_cube = max(map_mrc.header.tolist()[0],map_mrc.header.tolist()[1],map_mrc.header.tolist()[2])
@@ -57,7 +68,7 @@ def sample(fname, thresh, M, invalid=False, random_seed=None, verbose=False):
     x_res = []
     y_res = []
     z_res = []
-    for p in rms[10]:
+    for p in points:
 #         x_res.append(p[0])
 #         y_res.append(p[1])
 #         z_res.append(p[2])

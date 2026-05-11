@@ -128,11 +128,10 @@ def jgw(mu_x, mu_y, d_x, d_y, i_x, epsilon=1e5, eta=1, verbose=False, max_iter=5
             plt.show()
     
         cur_mu = mu
+        mus.append(cur_mu)
 
         if dif[-1] < diff_thrsh:
             break
-        
-        mus.append(cur_mu)
 
         if verbose:
             print("time: ", time.time() - t)
