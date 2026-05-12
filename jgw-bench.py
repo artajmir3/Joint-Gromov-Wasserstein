@@ -136,9 +136,9 @@ def apply_jgw(name, base_path = 'data/embuild/', output_bpath="data/output/"):
 
 
 parser = argparse.ArgumentParser(description="A script that applies jgw on a dataset.")
-parser.add_argument("-b", "--basepath", help="The base path of data folder", required=False, default='data/embuild/')
+parser.add_argument("-b", "--basepath", help="The base path of data folder", required=False, default='Data/embuild/')
 parser.add_argument("-d", "--dataset", help="The dataset for the experiment, put full for the full dataset of PDB ID for one", required=False, default='full')
-parser.add_argument("-o", "--output", help="The base output path", required=False, default="data/output/")
+parser.add_argument("-o", "--output", help="The base output path", required=False, default="Data/output/")
 
 args = parser.parse_args()
 print(args.dataset)
