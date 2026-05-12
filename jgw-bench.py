@@ -6,9 +6,9 @@ import os
 import argparse
 import time
 
-from code.jgw import jgw_wrapper
-from code.cryo_utils import sample, generate_pdb_no_mrc
-from code.alignment import build_coup, find_optimal_alignment
+from jgw import jgw_wrapper
+from utils.cryo_utils import sample, generate_pdb_no_mrc
+from utils.alignment import build_coup, find_optimal_alignment
 
 
 		

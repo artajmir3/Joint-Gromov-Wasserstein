@@ -4,8 +4,8 @@ import numpy as np
 from code import trn
 from code import cvt
 
-from code.quaternions import perform
-from code.alignment import change_quat_format
+from utils.quaternions import perform
+from utils.alignment import change_quat_format
 
 from Bio import PDB
 from Bio.PDB.vectors import Vector, rotmat
