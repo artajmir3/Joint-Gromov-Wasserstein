@@ -91,8 +91,10 @@ def cost(gamma, mu):
             s += mu[i,j] * gamma[i,j]
     return s
 
-def jgw(mu_x, mu_y, d_x, d_y, i_x, epsilon=1e5, eta=1, verbose=False, max_iter=50, diff_thrsh=1e-3, ot_solver='sinkhorn'):
+def jgw(mu_x, mu_y, d_x, d_y, i_x, epsilon=1e5, eta=1, verbose=False, max_iter=50, diff_thrsh=1e-3, ot_solver='sinkhorn', init=None):
     cur_mu = np.outer(mu_x, mu_y)
+    if init is not None:
+        cur_mu = init
     dif = []
     costs = []
     mus = []
@@ -138,7 +140,7 @@ def jgw(mu_x, mu_y, d_x, d_y, i_x, epsilon=1e5, eta=1, verbose=False, max_iter=5
     
     return mus[-1], dif, costs
 
-def jgw_wrapper(points_x, points_y, epsilon=1e5, eta=1, verbose=False, max_iter=50, diff_thrsh=1e-3, ot_solver='sinkhorn'):
+def jgw_wrapper(points_x, points_y, epsilon=1e5, eta=1, verbose=False, max_iter=50, diff_thrsh=1e-3, ot_solver='sinkhorn', init=None):
     d_y, i_y = generate_d([points_y])
     mu_y = [1/d_y.shape[0]] * d_y.shape[0]
     mu_y = np.array(mu_y)
@@ -154,4 +156,4 @@ def jgw_wrapper(points_x, points_y, epsilon=1e5, eta=1, verbose=False, max_iter=
         plt.show()
         print("d matrices are computed.")
 
-    return jgw(mu_x, mu_y, d_x, d_y, i_x, epsilon=epsilon, eta=eta, verbose=verbose, max_iter=max_iter, diff_thrsh=diff_thrsh, ot_solver=ot_solver)
+    return jgw(mu_x, mu_y, d_x, d_y, i_x, epsilon=epsilon, eta=eta, verbose=verbose, max_iter=max_iter, diff_thrsh=diff_thrsh, ot_solver=ot_solver, init=init)

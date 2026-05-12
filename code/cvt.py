@@ -6,7 +6,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 from scipy.spatial import ConvexHull, Delaunay
 
-from coords import *
+from code.coords import *
 
 
 # eps = sys.float_info.epsilon

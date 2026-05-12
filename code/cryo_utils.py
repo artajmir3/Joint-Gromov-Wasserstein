@@ -1,11 +1,11 @@
 import mrcfile
 import numpy as np
 
-import trn
-import cvt
+from code import trn
+from code import cvt
 
-from quaternions import perform
-from alignment import change_quat_format
+from code.quaternions import perform
+from code.alignment import change_quat_format
 
 from Bio import PDB
 from Bio.PDB.vectors import Vector, rotmat

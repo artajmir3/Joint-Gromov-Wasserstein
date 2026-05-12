@@ -1,5 +1,5 @@
 import numpy as np
-import coords as coords
+import code.coords as coords
 
 def trn_rm0(map_3d,M,random_seed=None):
   """

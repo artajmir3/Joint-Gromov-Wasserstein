@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial.transform import Rotation
-from quaternions import perform
+from code.quaternions import perform
 
 
 def build_coup(x, y, z, x1, y1, z1, pi, verbose=False):

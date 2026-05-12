@@ -1,5 +1,5 @@
-from alignment import build_coup, find_optimal_alignment, plot_alignment
-from ot_utils import ugw
+from code.alignment import build_coup, find_optimal_alignment, plot_alignment
+from code.ot_utils import ugw
 import matplotlib.pyplot as plt
 
 def align_pointcloud(x, y, z, x1, y1, z1, num=1, verbose=True):

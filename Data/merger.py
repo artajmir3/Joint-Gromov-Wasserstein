@@ -62,6 +62,5 @@ for line in lines:
 		output_file = "data/merged_empot/%s/merged_%s.pdb"%(name, i)
 		#output_file = "data/merged_jgw/%s/merged_%s.pdb"%(name, i)
 		merged_structure = merge_pdbs(pdb_files[i])
-		exit()
 		save_structure(merged_structure, output_file)
 		print(f"Merged {len(pdb_files[i])} PDB files into '{output_file}'")
