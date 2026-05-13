@@ -76,7 +76,7 @@ plt.show()
 
 
 ## Data Generation
-For generating the benchmarking dataset of models that we used in our experiments first go to `data/` and download the original atomic models  as follows.
+For generating the benchmarking dataset of models that we used in our experiment in Section 5.4 first go to `data/` and download the original atomic models  as follows.
 ```
 python download.py
 ```
