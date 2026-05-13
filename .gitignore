@@ -10,3 +10,5 @@ data/merged_jgw
 build
 dist
 *.egg-info
+README.html
+README_files
