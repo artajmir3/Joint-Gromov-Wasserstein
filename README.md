@@ -1,7 +1,7 @@
 # The Joint Gromov-Wasserstein Objective
 This repository is the implementation of in the paper "The Joint Gromov Wasserstein Objective for Multiple Object Matching".
 If you use this work for your research, please cite the paper:
-```
+```bibtex
 @article{riahi2025joint,
   title={The Joint Gromov Wasserstein Objective for Multiple Object Matching},
   author={Tajmir Riahi, Aryan and Dao Duc, Khanh},
@@ -13,26 +13,26 @@ If you use this work for your research, please cite the paper:
 ## Requirements
 This pacckage is installable via `pip`. It solely relies on `numpy` and `POT` packages, however, to run the experiments a few other packages are needed as well. Also to generate the benchmarking data our scripts require ChimeraX to run. To install the dependencies and the package, run the following command on your terminal:
 
-```
+```bash
 pip install -r requirement.txt
 pip install jgw
 ```
 
 ## Simple Usage
 For a simple usage of this package first import the essentials.
-```
+```python
 import numpy as np
 from jgw import jgw_wrapper, jgw_solver, generate_d
 ```
 
 Here is a toy example, `points_x` and `points_y` need to be in the format of a list of `np` arrays each one for one cluster.
-```
+```python
 points_x = [np.array([[0, 0, 0]]), np.array([[0, 0, 1]])]
 points_y = [np.array([[0, 0, 0], [0, 0, 1]])]
 ```
 
 We can generate distance matrices and marginals as follows.
-```
+```python
 eps = 1e-2
 max_iter = 50
 diff_thrsh = 1e-3
@@ -48,21 +48,21 @@ mu_x = np.array(mu_x)
 ```
 
 You can compute the transportation plan via the function `jgw_solver`, as follows.
-```
+```python
 mu, dif, costs = jgw_solver(mu_x, mu_y, d_x, d_y, i_x,
                             epsilon=epsilon, max_iter=max_iter,
                             diff_thrsh=diff_thrsh, init=init)
 ```
 
 If you don't want to modify the marginals and distance matrices by hand we can use the weapper function instead as:
-```
+```python
 mu, dif, costs = jgw_wrapper(points_x, points_y, 
                             epsilon=epsilon, max_iter=max_iter,
                             diff_thrsh=diff_thrsh, init=init)
 ```
 
 And check the convergence:
-```
+```python
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(4, 4))
 plt.plot(dif)
@@ -77,17 +77,17 @@ plt.show()
 
 ## Data Generation
 For generating the benchmarking dataset of models that we used in our experiment in Section 5.4 first go to `data/` and download the original atomic models  as follows.
-```
+```bash
 python download.py
 ```
 
 Then partition each map into its chains using the following script.
-```
+```bash
 python splitter.py
 ```
 
 Next we need to generate some hyperdata as follows.
-```
+```bash
 python generate_hyper_data.py
 ```
 
