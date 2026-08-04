@@ -1,14 +1,6 @@
 # The Joint Gromov-Wasserstein Objective
 This repository is the implementation of in the paper "The Joint Gromov Wasserstein Objective for Multiple Object Matching".
-If you use this work for your research, please cite the paper:
-```bibtex
-@article{riahi2025joint,
-  title={The Joint Gromov Wasserstein Objective for Multiple Object Matching},
-  author={Tajmir Riahi, Aryan and Dao Duc, Khanh},
-  journal={arXiv preprint arXiv:2511.16868},
-  year={2025}
-}
-```
+
 
 ## Requirements
 This pacckage is installable via `pip`. It solely relies on `numpy` and `POT` packages, however, to run the experiments a few other packages are needed as well. Also to generate the benchmarking data our scripts require ChimeraX to run. To install the dependencies and the package, run the following command on your terminal:
